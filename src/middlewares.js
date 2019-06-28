@@ -4,7 +4,7 @@ const { projects } = require('./data');
  * Logs the number of requests to
  * the console on each request
  */
-const logsNumberOfRequests = (req, res, next) => {
+const logNumberOfRequests = (req, res, next) => {
   console.count('Number of requests');
 
   return next();
@@ -14,7 +14,7 @@ const logsNumberOfRequests = (req, res, next) => {
  * Checks if a project with
  * a given id exists
  */
-const checksIfProjectIdExists = (req, res, next) => {
+const checkIfProjectIdExists = (req, res, next) => {
   const { id } = req.params;
   const project = projects.find(project => project.id === id);
 
@@ -26,6 +26,6 @@ const checksIfProjectIdExists = (req, res, next) => {
 };
 
 module.exports = {
-  logsNumberOfRequests,
-  checksIfProjectIdExists
+  logNumberOfRequests,
+  checkIfProjectIdExists
 };

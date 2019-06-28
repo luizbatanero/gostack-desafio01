@@ -1,7 +1,7 @@
 const { Router } = require('express');
 
 const { projects } = require('./data');
-const { checksIfProjectIdExists } = require('./middlewares');
+const { checkIfProjectIdExists } = require('./middlewares');
 
 const routes = new Router();
 
@@ -38,7 +38,7 @@ routes.post('/projects', (req, res) => {
 /***
  * Updates project title by id
  */
-routes.put('/projects/:id', checksIfProjectIdExists, (req, res) => {
+routes.put('/projects/:id', checkIfProjectIdExists, (req, res) => {
   const { id } = req.params;
   const { title } = req.body;
 
@@ -56,7 +56,7 @@ routes.put('/projects/:id', checksIfProjectIdExists, (req, res) => {
 /***
  * Deletes project by id
  */
-routes.delete('/projects/:id', checksIfProjectIdExists, (req, res) => {
+routes.delete('/projects/:id', checkIfProjectIdExists, (req, res) => {
   const { id } = req.params;
 
   const projectIndex = projects.findIndex(project => project.id === id);
@@ -70,7 +70,7 @@ routes.delete('/projects/:id', checksIfProjectIdExists, (req, res) => {
  * Creates new task inside
  * a given project
  */
-routes.post('/projects/:id/tasks', checksIfProjectIdExists, (req, res) => {
+routes.post('/projects/:id/tasks', checkIfProjectIdExists, (req, res) => {
   const { id } = req.params;
   const { title } = req.body;
 
